@@ -271,5 +271,157 @@ color: rgb(255, 255, 255);
   background-position: center;
   height: 100vh;
 }
+/*** ALL ENTRIES ****/
+
+section .entries{
+  margin: 100px auto;
+  position: relative;
+  width: 80%;
+  height: 100vh;  
+}
+.entries ul{
+  position: relative;
+  top: 38%;
+  transform: translateY(-50%); 
+  margin: 0;
+  padding: 40px;
+  box-sizing: border-box;
+  
+}
+.entries ul li{
+  list-style: none;
+  box-sizing: border-box;
+  height: 190px;
+  margin: 15px 0;
+  box-shadow: 0px 0px 1px 2px #ffc107;
+  cursor: pointer;
+  
+}
+.entries ul li .time{
+  position: relative;
+  padding: 20px;
+  background: #262626;
+  box-sizing: border-box;
+  width: 30%;
+  height: 100%;
+  float: left;
+  text-align: center;
+  transition: .2s;
+}
+.entries ul li:hover .time{
+  background: #ffc107;
+}
+ .entries ul .time h2 {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 60px;
+  line-height: 30px;
+}
+ .entries ul li .time h2 span {
+  font-size: 30px;
+}
+
+.entries ul li .details {
+  padding: 20px;
+  background: #fff;
+  box-sizing: border-box;
+  width: 70%;
+  height: 100%;
+  float: left;
+}
+ .entries ul li .details h3 {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+}
+ .entries ul li .details p {
+  position: relative;
+  margin: 10px 0 0;
+  padding: 0;
+  font-size: 16px;   
+}
+ .entries ul li .details a{
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  border: 2px solid #02387e;
+  border-radius: 15px;
+  margin-top: 15px;
+  font-size: 18px;
+  transition: .2s;
+}
+.entries ul li .details a:hover{
+  background: #ffc107;;
+  color: white;
+  border-color: #ffc107;;
+}
+.entries ul li .details .delete:hover{
+  background: #e60d0d;
+  color: white;
+  border-color: #e60d0d;
+}
+
+
+@media (max-width: 991px){
+  section{
+      height: 100%;
+      background-position: center;
+  }
+  section .leftBox{
+      width: 100%;
+      height: auto;
+      float: none;
+      padding: 20px;
+  }
+  section .entries {
+      width: 100%;
+      height: auto;
+      background: transparent;
+      float: none;
+  }
+  section .leftBox .content{
+      padding: 20px;
+  }
+  section .leftBox .content h1{
+      font-size: 30px;
+  }
+ .entries ul {
+      position: relative;
+      transform: translateY(0px);
+      padding: 0 20px 20px;
+      left: 0%;
+  }
+   .entries ul li {
+      height: auto;
+  }
+  .entries ul li .time{
+      width: 80px;
+      height: 80px;
+      padding: 0;
+  }
+   .entries ul li .time h2{
+      font-size: 30px;
+      line-height: 24px;
+  }
+  .entries ul li .time h2 span{
+      font-size: 20px;
+  }
+   .entries ul li .details{
+      width: 100%;
+      float: none;
+      padding-left: 100px;
+  }
+   .entries ul li .details a{
+      padding: 5px 10px;
+  }
+  
+}
     
 
