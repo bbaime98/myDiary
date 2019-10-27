@@ -1,78 +1,101 @@
 const mockData = {
-  signup_user1: {
-    firstName: 'Inoocent',
-    lastName: 'Ishimwe',
-    email: 'innocent@gmail.com',
+  signupComplete1: {
+    firstName: 'Bran',
+    lastName: 'Stark',
+    email: 'bstark@gmail.com',
     password: 'Password@123',
   },
-  signup_user2: {
-    firstName: 'Anaise',
-    lastName: 'aime',
-    email: 'anaise@gmail.com',
+  signupComplete2: {
+    firstName: 'Ben',
+    lastName: 'Gisa',
+    email: 'bengisa@gmail.com',
     password: 'Password@123',
-  },
 
-  signup_email_exist: {
-    firstName: 'Anaise',
-    lastName: 'aime',
-    email: 'anaise@gmail.com',
+  },
+  baraka: {
+    firstName: 'Baraka',
+    lastName: 'Mugisha',
+    email: 'mugishaje@gmail.com',
+    password: 'Password@123',
+
+  },
+  james: {
+    firstName: 'James',
+    lastName: 'Nyagatare',
+    email: 'jimnyagtr@gmail.com',
     password: 'Password@123',
   },
-  signup_no_firstName: {
-    firstName: '',
-    lastName: 'aime',
-    email: 'bienaime@gmail.com',
+  signupIncomplete: {
+    firstName: 'Bran',
+    lastName: 'stark',
+    email: 'bstark@gmail.com',
     password: 'Password@123',
   },
-  signup_no_lastName: {
-    firstName: 'bien',
-    lastName: '',
+  signupShortPwd: {
+    firstName: 'Bran',
+    lastName: 'stark',
+    email: 'bstark@gmail.com',
+    password: 'Pass@1',
+  },
+  signupNoNumPwd: {
+    firstName: 'Bran',
+    lastName: 'stark',
+    email: 'bstark@gmail.com',
+    password: 'Passwowow@!oword',
+  },
+  signupNoCharPwd: {
+    firstName: 'Bran',
+    lastName: 'stark',
+    email: 'bstark@gmail.com',
+    password: 'Password123',
+  },
+  signupNoUcasePwd: {
+    firstName: 'Bran',
+    lastName: 'stark',
+    email: 'bstark@gmail.com',
+    password: 'password@123',
+  },
+  signupNumFname: {
+    firstName: '1234',
+    lastName: 'stark',
+    email: 'bstark@gmail.com',
+    password: 'Password@123',
+  },
+  signupNumLname: {
+    firstName: 'Bran',
+    lastName: '1234',
+    email: 'bstark@gmail.com',
+    password: 'Password@123',
+  },
+  signupSpaceFname: {
+    firstName: 'Bran Bob',
+    lastName: 'stark',
+    email: 'bstark@gmail.com',
+    password: 'Password@123',
+  },
+  signupSpaceLname: {
+    firstName: 'Bran',
+    lastName: 'Stark Man',
+    email: 'bstark@gmail.com',
+    password: 'Password@123',
+  },
+  signupGenderUnclear: {
+    firstName: 'Bran',
+    lastName: 'stark',
+    email: 'bstark@gmail.com',
+    password: 'Password@123',
+  },
+  loginComplete: {
     email: 'bengisa@gmail.com',
-    password: 'Password@123',
+    password: 'Password@123'
   },
-  signup_no_password: {
-    firstName: 'aime',
-    lastName: 'bien',
+  loginWrongPwd: {
     email: 'bengisa@gmail.com',
-    password: '',
+    password: 'Password@345'
   },
-  signup_no_email: {
-    firstName: 'aime',
-    lastName: 'bien',
-    email: '',
-    password: 'Password@123',
-  },
-  // signin
-  signup_user3: {
-    firstName: 'special',
-    lastName: 'usre',
-    email: 'spaecial@gmail.com',
-    password: 'Password@123',
-  },
-  signin_complete: {
-    email: 'anaise@gmail.com',
-    password: 'Password@123',
-  },
-  signin_without_email: {
-    email: '',
-    password: 'Password@123',
-  },
-  signin_without_password: {
-    email: 'anaise@gmail.com',
-    password: '',
-  },
-  signin_with_wrong_email: {
-    email: 'ana@gmail.com',
-    password: 'Password@123',
-  },
-  signin_with_wrong_password: {
-    email: 'anaise@gmail.com',
-    password: 'Password@',
-  },
-  signin_with_no_account: {
-    email: 'ishimwee@gmail.com',
-    password: '8Uhe*password',
+  loginNoAccount: {
+    email: 'brucesangwa@gmail.com',
+    password: 'Password@123'
   },
 };
-
 export default mockData;
