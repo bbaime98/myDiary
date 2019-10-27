@@ -217,6 +217,59 @@ footer{
     color: #ffc107;
     background: white;
     }
-
+/** NEW SIGN Up***/
+.sign-up-form{
+  width: 300px;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+  background: white;
+  padding: 20px;
+ margin: 160px;
+ margin-left: auto;
+ margin-right: auto;
+ margin-bottom: 0;
+  text-align: center; 
+}
+.sign-up-form p a {
+  text-decoration: none;
+  color:#0772ff;
+}
+.sign-up-form h1 {
+  color: #ffc107;
+  margin-bottom: 30px;
+}
+.input-box{
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border: 1px solid #999;
+  outline: none;
+}
+.signup-btn a{
+ text-decoration: none; 
+color: rgb(255, 255, 255);
+}
+.signup-btn{
+  color: white;
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 15px;
+  margin: 10px 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #ffc107;
+}
+.signup-btn:hover{
+  color: white;
+  background: rgb(8, 115, 216);
+}
+.sign-up-body{
+  background: linear-gradient(rgba(53, 53, 53, 0.4), rgba(230, 146, 37, 0.5)), url(../image/cool2.jpg) no-repeat center center;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
     
 
