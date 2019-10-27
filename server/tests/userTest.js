@@ -19,9 +19,10 @@ describe('Signup Test', () => {
         res.body.should.have.property('message').eql('User created successfully');
         res.body.should.have.property('data');
         res.body.data.should.have.property('token');
-        done();
       });
+    done();
   });
+
 
   it('it should not create an user account with incomplete info', (done) => {
     chai.request(app)
@@ -82,7 +83,7 @@ describe('Signup Test', () => {
         res.should.have.status(409);
         res.body.should.have.property('status').eql(409);
         res.body.should.have.property('error').eql('Email already exists');
-        done();
       });
+    done();
   });
 });
