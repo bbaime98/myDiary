@@ -87,3 +87,75 @@ describe('Signup Test', () => {
     done();
   });
 });
+
+// signIn
+
+describe(' Login test', () => {
+  it('it should login a user', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(mockData.signin_complete)
+      .end((_err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('token');
+        done();
+      });
+  });
+  it('it should not login a user with no email', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(mockData.signin_without_email)
+      .end((_err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        done();
+      });
+  });
+  it('it should not login a user no password', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(mockData.signin_without_password)
+      .end((_err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        done();
+      });
+  });
+
+  it('it should not login a user with wrong password', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(mockData.signin_with_wrong_password)
+      .end((err, res) => {
+        res.should.have.status(403);
+        res.body.should.have.property('status').eql(403);
+        res.body.should.have.property('error').eql('Invalid email or password');
+        done();
+      });
+  });
+  it('it should not login a user with wrong email', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(mockData.signin_with_wrong_email)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('error').eql('User not found');
+        done();
+      });
+  });
+
+  it('it should not login a user who does not have account', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(mockData.signin_with_no_account)
+      .end((_err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('error').eql('User not found');
+        done();
+      });
+  });
+});
