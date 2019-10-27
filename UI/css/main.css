@@ -423,5 +423,77 @@ section .entries{
   }
   
 }
-    
+/* single entry */
+.single{
+  margin-top: 150px;
+  text-align: center;
+  color: black;
+}
+.single p {
+  font-size: 1.2em;
+        max-width: 500px;
+        margin: 1em auto;
+        color: black;
+}
+.single h2 {
+  color: #ffc107;
+}
+.enry-date{
+  font-size: 18px;
+  font-weight: 100;
+}
+.single a{
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  border: 2px solid #ffc107;
+  color: black;
+  border-radius: 10px;
+  margin-top: 15px;
+  font-size: 18px;
+  transition: .2s;
+}
+.single a:hover{
+  background: #ffc107;;
+  color: white;
+  border-color: #ffc107;;
+}
+.single .delete:hover{
+  background: #e60d0d;
+  color: white;
+  border-color: #e60d0d;
+}
+
+/****** pagging */
+.pagging {
+  position: absolute;
+  width: 30%;
+  left: 50%;
+  top: 85%;
+}
+.pagging ul li a{
+  text-decoration: none;
+  color: black;
+}
+.pagging ul li {
+  display: block;
+  float: left;
+  text-align: center;
+  color: #2c2537;
+  font-size: 1.5em;
+  border-radius: 10px;
+  padding: 7px;
+}
+.pagging ul li.active {
+  background-color: #2c2537;
+}
+.pagging ul li.active a{
+  color:white;
+}
+.pagging:after {
+  content: "";
+  display: block;
+  clear: both
+}
 
