@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-
+import allRoutes from './routes/allRoutes';
 
 dotenv.config();
 const app = express();
@@ -14,7 +14,7 @@ app.use(
     extended: false
   })
 );
-
+app.use('/api/v1', allRoutes);
 app.get('/', (_req, res) => {
   res.status(200).send({
     status: 200,
