@@ -423,6 +423,63 @@ section .entries{
   }
   
 }
+/****MAIN  NEW ENTRY ****/
+.container-entry{
+  width: 60%;
+  height: 70%;
+  background: white;
+  margin: 110px auto;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(72,98,85,0.6);
+}
+.container-entry p{
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #486255;
+  letter-spacing: 1px;
+}
+.response{
+  width: 90%;
+
+}
+.input , .msg  .area {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  border: 2px solid #e9eaea;
+  font-size: 14px;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.2s;
+}
+.msg .area {
+  height: 150px;
+}
+.btn-entry {
+  width: 45%;
+  background: #ffc107;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+    text-transform: uppercase;
+  margin: 0  auto 10px auto ;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.btn-entry:hover{
+  color: white;
+  background: rgb(8, 115, 216);
+}
+.input:focus, .msg .area:focus{
+  border: 2px solid #ffc107;
+}
+.btn-entry a {
+  text-decoration: none;
+  color: white;
+}
 /* single entry */
 .single{
   margin-top: 150px;
@@ -470,7 +527,7 @@ section .entries{
   position: absolute;
   width: 30%;
   left: 50%;
-  top: 85%;
+  top: 90%;
 }
 .pagging ul li a{
   text-decoration: none;
