@@ -23,7 +23,6 @@ describe('Signup Test', () => {
       });
   });
 
-
   it('it should not create an user account with incomplete info', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
@@ -83,7 +82,7 @@ describe('Signup Test', () => {
         res.should.have.status(409);
         res.body.should.have.property('status').eql(409);
         res.body.should.have.property('error').eql('Email already exists');
+        done();
       });
-    done();
   });
 });
