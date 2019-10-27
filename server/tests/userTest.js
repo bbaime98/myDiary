@@ -86,6 +86,23 @@ describe('Signup Test', () => {
       });
     done();
   });
+
+});
+
+describe('Signup Test', () => {
+  it('it should sign up a user', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(mockData.signup_user2)
+      .end((_err, res) => {
+        res.should.have.status(201);
+        res.body.should.have.property('status').eql(201);
+        res.body.should.have.property('message').eql('User created successfully');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('token');
+      });
+    done();
+  });
   it('it should login a user', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signin')
@@ -99,7 +116,6 @@ describe('Signup Test', () => {
       });
   });
 });
-
 // // signIn
 // describe('User Login ', () => {
 //   beforeEach('Create a user', (done) => {
