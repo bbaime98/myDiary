@@ -91,6 +91,16 @@ describe('Signup Test', () => {
 // signIn
 
 describe(' Login test', () => {
+  beforeEach('Create a user', (done) => {    
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send((mockData.signup_user2))
+      .end((error) => {
+        if (error) done(error);
+        done();
+      });
+  });
+
   it('it should login a user', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signin')
