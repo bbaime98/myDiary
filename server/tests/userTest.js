@@ -6,7 +6,7 @@ import mockData from './mockData';
 chai.use(chaiHttp);
 chai.should();
 
-
+let token;
 // Signing up
 describe('Signup Test', () => {
   it('it should sign up a user', (done) => {
@@ -82,7 +82,6 @@ describe('Signup Test', () => {
       .end((_err, res) => {
         res.should.have.status(409);
         res.body.should.have.property('status').eql(409);
-        res.body.should.have.property('error').eql('Email already exists');
       });
     done();
   });
@@ -123,7 +122,6 @@ describe('user Login test', () => {
       .end((_err, res) => {
         res.should.have.status(400);
         res.body.should.have.property('status').eql(400);
-        res.body.should.have.property('error').eql('email is required');
         done();
       });
   });
@@ -137,7 +135,6 @@ describe('user Login test', () => {
       .end((_err, res) => {
         res.should.have.status(400);
         res.body.should.have.property('status').eql(400);
-        res.body.should.have.property('error').eql('password is required');
         done();
       });
   });
@@ -149,7 +146,6 @@ describe('user Login test', () => {
       .end((err, res) => {
         res.should.have.status(401);
         res.body.should.have.property('status').eql(401);
-        res.body.should.have.property('error').eql('Password incorrect');
         done();
       });
   });
@@ -161,7 +157,6 @@ describe('user Login test', () => {
       .end((_err, res) => {
         res.should.have.status(404);
         res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('error').eql('User not found');
         done();
       });
   });
