@@ -89,18 +89,16 @@ describe('Signup Test', () => {
 });
 
 // signIn
-
-describe(' Login test', () => {
+describe('User Login ', () => {
   beforeEach('Create a user', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
-      .send((mockData.signup_user2))
+      .send(mockData.signup_user2)
       .end((error) => {
         if (error) done(error);
         done();
       });
   });
-
   it('it should login a user', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signin')
@@ -110,61 +108,59 @@ describe(' Login test', () => {
         res.body.should.have.property('status').eql(200);
         res.body.should.have.property('data');
         res.body.data.should.have.property('token');
+        // res.body.data.should.have.property('id');
+        // res.body.data.should.have.property('firstName').eql('robben');
+        // res.body.data.should.have.property('lastName').eql('bahati');
+        // res.body.data.should.have.property('email').eql('bahati@prolite.com');
+        done();
       });
-    done();
   });
-  it('it should not login a user with no email', (done) => {
+  it('it should not login user without email', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signin')
       .send(mockData.signin_without_email)
       .end((_err, res) => {
         res.should.have.status(400);
         res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('data');
         done();
       });
   });
-  it('it should not login a user no password', (done) => {
+  it('it should not login user without password', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signin')
       .send(mockData.signin_without_password)
       .end((_err, res) => {
         res.should.have.status(400);
         res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('data');
         done();
       });
   });
 
-  it('it should not login a user with wrong password', (done) => {
+  // incorrect password
+  it('it should not login user with wrong password', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signin')
       .send(mockData.signin_with_wrong_password)
-      .end((err, res) => {
-        res.should.have.status(403);
-        res.body.should.have.property('status').eql(403);
-        res.body.should.have.property('error').eql('Invalid email or password');
-        done();
-      });
-  });
-  it('it should not login a user with wrong email', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signin')
-      .send(mockData.signin_with_wrong_email)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('error').eql('User not found');
+      .end((_err, res) => {
+        res.should.have.status(401);
+        res.body.should.have.property('status').eql(401);
+        res.body.should.have.property('data');
         done();
       });
   });
 
-  it('it should not login a user who does not have account', (done) => {
+
+  // user not found
+  it('it should not login user who does not have acount', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signin')
       .send(mockData.signin_with_no_account)
       .end((_err, res) => {
         res.should.have.status(404);
         res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('error').eql('User not found');
+        res.body.should.have.property('data');
         done();
       });
   });
