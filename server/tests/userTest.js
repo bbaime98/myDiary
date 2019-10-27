@@ -91,7 +91,7 @@ describe('Signup Test', () => {
 // signIn
 
 describe(' Login test', () => {
-  beforeEach('Create a user', (done) => {    
+  beforeEach('Create a user', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send((mockData.signup_user2))
@@ -110,8 +110,8 @@ describe(' Login test', () => {
         res.body.should.have.property('status').eql(200);
         res.body.should.have.property('data');
         res.body.data.should.have.property('token');
-        done();
       });
+    done();
   });
   it('it should not login a user with no email', (done) => {
     chai.request(app)
