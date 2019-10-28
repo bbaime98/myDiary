@@ -86,7 +86,7 @@ describe('Signup Test', () => {
       });
     done();
   });
- 
+
   it('it should not login a user with wrong password', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signin')
@@ -115,18 +115,6 @@ describe(' Login test', () => {
         res.body.data.should.have.property('token');
       });
     done();
-  });
-  it('it should login a user', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signin')
-      .send(mockData.signup_user3_login)
-      .end((_err, res) => {
-        res.should.have.status(200);
-        res.body.should.have.property('status').eql(200);
-        res.body.should.have.property('data');
-        res.body.data.should.have.property('token');
-        done();
-      });
   });
   it('it should not login a user with no email', (done) => {
     chai.request(app)
