@@ -95,8 +95,8 @@ describe('Signup Test', () => {
         res.body.should.have.property('status').eql(200);
         res.body.should.have.property('data');
         res.body.data.should.have.property('token');
+        done();
       });
-    done();
   });
   it('it should not login a user with wrong password', (done) => {
     chai.request(app)
