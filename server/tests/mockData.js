@@ -42,7 +42,49 @@ const mockData = {
     email: '',
     password: 'Password@123',
   },
-
+  // signin
+  signup_user3: {
+    firstName: 'thriduser',
+    lastName: 'user',
+    email: 'thriduser@gmail.com',
+    password: 'Password@123',
+  },
+  signup_user3_login: {
+    email: 'thriduser@gmail.com',
+    password: 'Password@123',
+  },
+  signup_user3_login_wrong_email: {
+    email: 'thriduse@gmail.com',
+    password: 'Password@123',
+  },
+  signup_user3_login_wrong_password: {
+    email: 'thriduser@gmail.com',
+    password: 'Passrd@123',
+  },
+  signin_complete: {
+    email: 'anaise@gmail.com',
+    password: 'Password@123',
+  },
+  signin_without_email: {
+    email: '',
+    password: 'Password@123',
+  },
+  signin_without_password: {
+    email: 'anaise@gmail.com',
+    password: '',
+  },
+  signin_with_wrong_email: {
+    email: 'ana@gmail.com',
+    password: 'Password@123',
+  },
+  signin_with_wrong_password: {
+    email: 'anaise@gmail.com',
+    password: 'Password@',
+  },
+  signin_with_no_account: {
+    email: 'ishimwee@gmail.com',
+    password: '8Uhe*password',
+  },
 };
 
 export default mockData;
