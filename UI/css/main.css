@@ -219,7 +219,7 @@ footer{
     }
 /** NEW SIGN Up***/
 .sign-up-form{
-  width: 300px;
+  width: 40%;
   box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
   background: white;
   padding: 20px;
@@ -227,7 +227,8 @@ footer{
  margin-left: auto;
  margin-right: auto;
  margin-bottom: 0;
-  text-align: center; 
+  text-align: center;
+  border-radius: 18px; 
 }
 .sign-up-form p a {
   text-decoration: none;
@@ -241,7 +242,7 @@ footer{
   border-radius: 20px;
   padding: 10px;
   margin: 10px 0;
-  width: 100%;
+  width: 70%;
   border: 1px solid #999;
   outline: none;
 }
@@ -251,7 +252,7 @@ color: rgb(255, 255, 255);
 }
 .signup-btn{
   color: white;
-  width: 100%;
+  width: 50%;
   padding: 10px;
   border-radius: 20px;
   font-size: 15px;
