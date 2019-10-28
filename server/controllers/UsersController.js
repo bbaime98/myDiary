@@ -38,4 +38,33 @@ export default class USers {
       }
     });
   }
+
+  static signin(req, res) {
+    const user = allUsers.users.find((userof) => userof.email === req.body.email);
+
+    if (user) {
+      const password = bcrypt.compareSync(req.body.password, user.password);
+      if (password) {
+        const token = jwt.sign({
+          id: user.id,
+          email: user.email
+        }, process.env.JWTPRIVATEKEY);
+        return res.status(200).json({
+          status: 200,
+          message: 'User is successfully logged in',
+          data: {
+            token,
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email
+          }
+        });
+      }
+    }
+    return res.status(401).json({
+      status: 401,
+      error: 'Invalid email or password'
+    });
+  }
 }
