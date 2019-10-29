@@ -1,3 +1,3 @@
 const users = [];
-
-export default { users, };
+const entries = [];
+export default { users, entries };
