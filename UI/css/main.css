@@ -585,3 +585,20 @@ section .entries{
    color: darkorange;
    cursor: pointer;
  }
+
+ .modal-details a{
+  background-color: red;
+  color: white;
+  border: 2px solid white;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 4px 5px;
+  font-size: 13px;
+  margin-left: 90px;
+  border-radius: 4px;
+  margin-top: 80px;
+}
+.modal-details a:hover{
+  background-color: white;
+  color: red;
+}
