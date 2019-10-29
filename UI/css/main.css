@@ -572,14 +572,15 @@ section .entries{
    background-color: white;
    margin: 20% auto;
    padding: 30px; 
-   width: 40%;
+   width: 25%;
    border-radius: 10px;
  }
  
  .closeBtn{
    float: right;
-   font-size: 35px;
+   font-size: 30px;
    color: black;
+   margin-top: 15px;
  }
  .closeBtn:hover{
    color: darkorange;
@@ -587,6 +588,7 @@ section .entries{
  }
 
  .modal-details a{
+   display: inline-block;
   background-color: red;
   color: white;
   border: 2px solid white;
@@ -594,11 +596,19 @@ section .entries{
   text-transform: uppercase;
   padding: 4px 5px;
   font-size: 13px;
-  margin-left: 90px;
+  margin-top: 9%;
+  margin-left: 10%;
   border-radius: 4px;
-  margin-top: 80px;
 }
 .modal-details a:hover{
   background-color: white;
   color: red;
+}
+.modal-details .cancel{
+  background-color: darkorange;
+  color: white
+}
+.modal-details .cancel:hover{
+  background-color: white;
+  color: darkorange;
 }
