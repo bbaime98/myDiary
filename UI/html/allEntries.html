@@ -22,6 +22,12 @@
     </button>
   </nav>
   <section class="entries-Containers">
+      <div class="modal-bg" id="modal-bg-js" >
+          <div class="modal-details">
+          <div class="closeBtn">&times;</div>
+          <p>Entry deleted successful!</p>
+      </div>
+      </div>
     <div class="entries ">
       <ul>
          <li class="between">
@@ -35,7 +41,7 @@
               Amet exercitationem eveniet quaerat nulla consectetur aliquid.
               Ipsa, cum harum unde molestiae voluptatem enim provident. Iusto</p>
               <a href="../html/editEntry.html">Edit</a>
-              <a href="#" class="delete">Delete</a>
+              <a href="#" id ="modalBtn" class="delete">Delete</a>
           </div>
         </li>
         <li>
@@ -68,5 +74,5 @@
 
 </body>
 <script src="../js/index.js"></script>
-
+<script src="../js/modal.js"></script>
 </html>

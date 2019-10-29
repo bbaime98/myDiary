@@ -555,3 +555,33 @@ section .entries{
   clear: both
 }
 
+/*modal*/
+.modal-bg{
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left:0;
+  top:0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.6);
+  
+ }
+ 
+ .modal-details{
+   background-color: white;
+   margin: 20% auto;
+   padding: 30px; 
+   width: 40%;
+   border-radius: 10px;
+ }
+ 
+ .closeBtn{
+   float: right;
+   font-size: 35px;
+   color: black;
+ }
+ .closeBtn:hover{
+   color: darkorange;
+   cursor: pointer;
+ }
