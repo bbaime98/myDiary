@@ -52,4 +52,32 @@ export default class Entry {
     const data = { ...req.entry };
     return Response.successResponse(res, 200, 'Specific Entry', data);
   }
+
+  /**
+ * @description handles entry modification
+ *
+ * @param {object} req
+ * @param {object} res
+ */
+  static modifyEntry(req, res) {
+    const indexOfEntry = AllEntry.entries.indexOf(req.entry);
+    const newEntry = {
+      entryID: req.entry.entryID,
+      title: req.body.title,
+      description: req.body.description,
+      userId: req.payload.id,
+      createdOn: req.entry.createdOn,
+    };
+    newEntry.editedOn = new Date();
+
+    AllEntry.entries.splice(indexOfEntry, 1, newEntry);
+    const data = {
+      editedOn: newEntry.editedOn,
+      createdOn: req.entry.createdOn,
+      entryID: newEntry.entryID,
+      title: newEntry.title,
+      description: newEntry.description
+    };
+    return Response.successResponse(res, 200, 'Entry successfully edited', data);
+  }
 }

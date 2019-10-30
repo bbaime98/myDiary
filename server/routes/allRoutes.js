@@ -14,4 +14,5 @@ route.post('/auth/signin', signin, UserControllers.signin);
 route.post('/entries', auth, entryValidator, EntryController.create);
 route.get('/entries', auth, EntryController.getAll);
 route.get('/entries/:id', auth, paramsValidator, EntryController.specifiEntry);
+route.patch('/entries/:id', auth, paramsValidator, entryValidator, EntryController.modifyEntry);
 export default route;
