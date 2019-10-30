@@ -7,6 +7,7 @@ chai.use(chaiHttp);
 chai.should();
 
 let userToken;
+let noEntryToken;
 describe('Entry tests ', () => {
   before((done) => {
     chai.request(app)
@@ -80,6 +81,37 @@ describe('Entry tests ', () => {
         res.should.have.status(404);
         res.body.should.have.property('status').eql(404);
         res.body.should.have.property('error').eql('No Entry found');
+        done();
+      });
+  });
+  it('should return enter valid entry Id ', (done) => {
+    chai.request(app)
+      .get('/api/v1/entries/tuyiuopiuyt')
+      .set('token', userToken)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error').eql('Please enter a  valid entry Id');
+        done();
+      });
+  });
+  before((done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(entryMock[3])
+      .end((err, res) => {
+        noEntryToken = res.body.data.token;
+        done();
+      });
+  });
+  it('should return you did not create that entry ', (done) => {
+    chai.request(app)
+      .get('/api/v1/entries/1')
+      .set('token', noEntryToken)
+      .end((err, res) => {
+        res.should.have.status(403);
+        res.body.should.have.property('status').eql(403);
+        res.body.should.have.property('error').eql('Entry not found, you did not create that entry');
         done();
       });
   });

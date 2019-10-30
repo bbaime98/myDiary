@@ -12,7 +12,13 @@ const entries = [
   {
     email: 'okay@gmail.com',
     password: 'youu89898',
-  }
+  },
+  {
+    firstName: 'no',
+    lastName: 'entry',
+    email: 'noentry@gmail.com',
+    password: 'youu89898',
+  },
 
 ];
 export default entries;
