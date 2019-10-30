@@ -1,6 +1,13 @@
 import AllEntry from '../data/data';
+import Response from '../helpers/Response';
 
 export default class Entry {
+  /**
+   * @description handles the creation of an entry
+   *
+   * @param {object} req
+   * @param {object} res
+   */
   static create(req, res) {
     const userId = req.payload.id;
     const newEntry = {
@@ -11,36 +18,29 @@ export default class Entry {
     };
     newEntry.createdOn = new Date();
     AllEntry.entries.push(newEntry);
-
-    return res.status(201).json({
-      status: 201,
-      message: 'Entry successfully created',
-      data: {
-        createdOn: newEntry.createdOn,
-        entryID: newEntry.entryID,
-        title: newEntry.title,
-        description: newEntry.description
-      }
-    });
+    const data = {
+      createdOn: newEntry.createdOn,
+      entryID: newEntry.entryID,
+      title: newEntry.title,
+      description: newEntry.description
+    };
+    return Response.successResponse(res, 201, 'Entry successfully created', data);
   }
 
+  /**
+ * @description retrieves all entries that were created
+ *
+ * @param {object} req
+ * @param {object} res
+ */
   static getAll(req, res) {
     const owner = AllEntry.entries.filter((userof) => userof.userId === req.payload.id);
 
     if (owner.length === 0) {
-      return res.status(404).json({
-        status: 404,
-        error: 'No Entry Found'
-
-      });
+      return Response.errorResponse(res, 404, 'No Entry Found');
     }
-
     const sortedEntries = owner.sort((a, b) => b.createdOn - a.createdOn);
-    return res.status(200).json({
-      status: 200,
-      message: 'All Entries',
-      data: sortedEntries
-    });
+    return Response.successResponse(res, 200, 'All Entries', sortedEntries);
   }
 
   /**
@@ -49,12 +49,7 @@ export default class Entry {
    * @param {object} res
    * */
   static specifiEntry(req, res) {
-    return res.status(200).json({
-      status: 200,
-      message: 'Specific Entry',
-      data: {
-        ...req.entry
-      }
-    });
+    const data = { ...req.entry };
+    return Response.successResponse(res, 200, 'Specific Entry', data);
   }
 }

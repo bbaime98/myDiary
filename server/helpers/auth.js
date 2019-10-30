@@ -1,14 +1,12 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import Response from './Response';
 
 dotenv.config();
 const auth = (req, res, next) => {
   const token = req.header('token');
   if (!token) {
-    return res.status(401).json({
-      status: 401,
-      error: 'No token provided'
-    });
+    return Response.errorResponse(res, 401, 'No token provided');
   }
 
   try {
@@ -17,10 +15,7 @@ const auth = (req, res, next) => {
 
     return next();
   } catch (ex) {
-    return res.status(401).json({
-      status: 401,
-      error: 'Invalid token'
-    });
+    return Response.errorResponse(res, 401, 'Invalid token');
   }
 };
 
