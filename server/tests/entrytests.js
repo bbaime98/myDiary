@@ -139,7 +139,7 @@ describe('Entry tests ', () => {
         done();
       });
   });
-  it('should return entry was edited sucessfullly ', (done) => {
+  it('should return entry was deleted sucessfullly ', (done) => {
     chai.request(app)
       .delete('/api/v1/entries/1')
       .set('token', userToken)
