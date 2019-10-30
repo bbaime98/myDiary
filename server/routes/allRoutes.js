@@ -11,4 +11,5 @@ const route = express.Router();
 route.post('/auth/signup', signup, UserControllers.signup);
 route.post('/auth/signin', signin, UserControllers.signin);
 route.post('/entries', auth, entryValidator, EntryController.create);
+route.get('/entries', auth, EntryController.getAll);
 export default route;

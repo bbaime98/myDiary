@@ -8,15 +8,10 @@ chai.should();
 
 let userToken;
 describe('Entry tests ', () => {
-  beforeEach((done) => {
+  before((done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Byiringiro',
-        lastName: 'jean',
-        email: 'okay@gmail.com',
-        password: 'youu89898',
-      })
+      .send(entryMock[0])
       .end((err, res) => {
         userToken = res.body.data.token;
         done();
@@ -36,6 +31,32 @@ describe('Entry tests ', () => {
         res.body.data.should.have.property('description').eql('everything will be alright');
         res.body.data.should.have.property('entryID');
         res.body.data.should.have.property('createdOn');
+        done();
+      });
+  });
+  it('should return all entries created ', (done) => {
+    chai.request(app)
+      .get('/api/v1/entries')
+      .set('token', userToken)
+      .send(entryMock[1])
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('All Entries');
+        res.body.should.have.property('data');
+      });
+    done();
+  });
+  it('should return User is successfully logged in ', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .set('token', userToken)
+      .send(entryMock[2])
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('User is successfully logged in');
+        res.body.should.have.property('data');
         done();
       });
   });
