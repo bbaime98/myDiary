@@ -60,4 +60,27 @@ describe('Entry tests ', () => {
         done();
       });
   });
+  it('should return specific entry ', (done) => {
+    chai.request(app)
+      .get('/api/v1/entries/1')
+      .set('token', userToken)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('Specific Entry');
+        res.body.should.have.property('data');
+        done();
+      });
+  });
+  it('should return no entry found ', (done) => {
+    chai.request(app)
+      .get('/api/v1/entries/90090')
+      .set('token', userToken)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('error').eql('No Entry found');
+        done();
+      });
+  });
 });

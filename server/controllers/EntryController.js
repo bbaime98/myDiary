@@ -42,4 +42,19 @@ export default class Entry {
       data: sortedEntries
     });
   }
+
+  /**
+   * @description handles view specific entry
+   * @param {object} req
+   * @param {object} res
+   * */
+  static specifiEntry(req, res) {
+    return res.status(200).json({
+      status: 200,
+      message: 'Specific Entry',
+      data: {
+        ...req.entry
+      }
+    });
+  }
 }
