@@ -115,4 +115,17 @@ describe('Entry tests ', () => {
         done();
       });
   });
+  it('should return entry was edited sucessfullly ', (done) => {
+    chai.request(app)
+      .patch('/api/v1/entries/1')
+      .set('token', userToken)
+      .send(entryMock[4])
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('Entry successfully edited');
+        res.body.should.have.property('data');
+        done();
+      });
+  });
 });
