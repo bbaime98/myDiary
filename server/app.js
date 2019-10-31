@@ -33,6 +33,6 @@ app.use((error, _req, res, _next) => {
   }
 });
 
-app.listen(port);
+app.listen(port, ()=> console.log(`running on ${port}`));
 
 export default app;

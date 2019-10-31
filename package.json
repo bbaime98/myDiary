@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha --require babel-core/register --require babel-polyfill ./server/tests/*.js --timeout 5000 --exit",
-    "start": "node ./dist/app.js",
+    "start": "npm run build && node ./dist/app.js",
     "dev-start": "nodemon --require babel-core/register --require babel-polyfill ./server/app.js",
     "lint": "eslint server",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
