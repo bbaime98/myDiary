@@ -25,9 +25,7 @@ app.get('/', (_req, res) => {
 });
 
 
-app.use('/*', (_req, res) => {
-  return Response.errorResponse(res, 404, 'Route Not Found');
-});
+app.use('/*', (_req, res) => Response.errorResponse(res, 404, 'Route Not Found'));
 
 app.use((error, _req, res, _next) => {
   if (error.status === 400) {
