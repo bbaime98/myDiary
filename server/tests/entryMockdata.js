@@ -23,6 +23,10 @@ const entries = [
     title: 'This is modify endpoint',
     description: 'all has been edited changes modifyes total completely sucessfully almost every thing',
   },
+  {
+    title: '',
+    description: 'all has been edited changes modifyes total completely sucessfully almost every thing',
+  },
 
 ];
 export default entries;

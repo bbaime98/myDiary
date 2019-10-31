@@ -80,4 +80,18 @@ export default class Entry {
     };
     return Response.successResponse(res, 200, 'Entry successfully edited', data);
   }
+
+  /**
+ * @description handles delete an entry
+ *
+ * @param {object} req
+ * @param {object} res
+ */
+
+  static deleteEntry(req, res) {
+    const index = AllEntry.entries.indexOf(req.entry, 0);
+    AllEntry.entries.splice(index, 1);
+    const data = { ...req.entry };
+    return Response.successResponse(res, 200, 'Entry successfully deleted', data);
+  }
 }

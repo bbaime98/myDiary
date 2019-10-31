@@ -128,4 +128,52 @@ describe('Entry tests ', () => {
         done();
       });
   });
+  it('should return title  can not be empty ', (done) => {
+    chai.request(app)
+      .patch('/api/v1/entries/1')
+      .set('token', userToken)
+      .send(entryMock[5])
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        done();
+      });
+  });
+  it('should return entry was deleted sucessfullly ', (done) => {
+    chai.request(app)
+      .delete('/api/v1/entries/1')
+      .set('token', userToken)
+      .send(entryMock[4])
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('Entry successfully deleted');
+        res.body.should.have.property('data');
+        done();
+      });
+  });
+  it('should return no Invalid token ', (done) => {
+    chai.request(app)
+      .delete('/api/v1/entries/1')
+      .set('token', 'eyJhbGcIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyZWxseUBnbWFpbC5jb20iLCJpYXQiOjE1NzI0Njg2NTJ9.eXMdkYoWmxaCxd8mXOYOc6crWKdBXcEcLpuSBwySBvI')
+      .send(entryMock[4])
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.should.have.property('status').eql(401);
+        res.body.should.have.property('error').eql('Invalid token');
+        done();
+      });
+  });
+  it('should return no token provided ', (done) => {
+    chai.request(app)
+      .delete('/api/v1/entries/1')
+      .set('token', '')
+      .send(entryMock[4])
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.should.have.property('status').eql(401);
+        res.body.should.have.property('error').eql('No token provided');
+        done();
+      });
+  });
 });
