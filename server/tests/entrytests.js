@@ -109,8 +109,8 @@ describe('Entry tests ', () => {
       .get('/api/v1/entries/1')
       .set('token', noEntryToken)
       .end((err, res) => {
-        res.should.have.status(403);
-        res.body.should.have.property('status').eql(403);
+        res.should.have.status(404);
+        res.body.should.have.property('status').eql(404);
         res.body.should.have.property('error').eql('Entry not found, you did not create that entry');
         done();
       });
