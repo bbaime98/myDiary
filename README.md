@@ -1,9 +1,9 @@
-# MyDiary
 
 [![Build Status](https://www.travis-ci.com/bbaime98/myDiary.svg?branch=develop)](https://www.travis-ci.com/bbaime98/myDiary)
 [![Coverage Status](https://coveralls.io/repos/github/bbaime98/myDiary/badge.svg)](https://coveralls.io/github/bbaime98/myDiary)
 [![Maintainability](https://api.codeclimate.com/v1/badges/96b06082c70299a2c5ce/maintainability)](https://codeclimate.com/github/bbaime98/myDiary/maintainability)
 
+# MyDiary
 ## What is it?
 
 MyDiary is an online journal where users can pen down their thoughts and feelings
@@ -157,6 +157,9 @@ and push like so
 ```
 git push origin branchnameforyourchanges
 ```
+# Documentation:
+
+https://documenter.getpostman.com/view/8269007/SW12yx9M
 
 # Author:
 
