@@ -612,3 +612,37 @@ section .entries{
   background-color: white;
   color: darkorange;
 }
+
+.single img {
+  width: 180px;
+  height: 180px;
+  border-radius: 500px;
+}
+.single span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.single .reminder {
+  background: #000000;
+  color: white;
+  border-color: #ffc107;
+}
+.single .delete:hover{
+  background: #ffc107;
+  color: white;
+  border-color: #ffffff;
+}
+ 
+.modal-details .closeBTN{
+ background-color: #ffc107;
+ color: white;
+ border: 1px solid white;
+ text-decoration: none;
+ text-transform: uppercase;
+ padding: 4px 5px;
+ font-size: 13px;
+ margin-top: 9%;
+ margin-left: 67%;
+ border-radius: 4px;
+}
