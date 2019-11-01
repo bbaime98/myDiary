@@ -92,6 +92,8 @@ export default class Entry {
     const index = AllEntry.entries.indexOf(req.entry, 0);
     AllEntry.entries.splice(index, 1);
     const data = { ...req.entry };
+    const newArrayLength = AllEntry.entries.length + 1;
+    AllEntry.entries.length = newArrayLength;
     return Response.successResponse(res, 200, 'Entry successfully deleted', data);
   }
 }
