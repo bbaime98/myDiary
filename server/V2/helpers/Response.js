@@ -1,7 +1,7 @@
 export default class Response {
   /**
      * @description handles sucess response
-     * 
+     *
      * @param {object} response
      * @param {number} status
      * @param {string} message
@@ -18,7 +18,7 @@ export default class Response {
    * @param {number} status
    * @param {string} error
    *
-   * @returns {object} 
+   * @returns {object}
    */
   static errorResponse(response, status, error) {
     return (response.status(status).json({ status, error, }));

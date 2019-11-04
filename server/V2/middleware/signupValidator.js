@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import Response from '../helpers/Response';
 
 const signup = (req, res, next) => {
   const schema = {
@@ -9,12 +10,9 @@ const signup = (req, res, next) => {
   };
   const { error } = Joi.validate(req.body, schema);
   if (error) {
-    return res.status(400).json({
-      status: 400,
-      error: error.details[0].message
-    });
+    return Response.errorResponse(res, 400, `${error.details[0].message}`);
   }
-  return next();
+  next();
 };
 
 export default signup;
