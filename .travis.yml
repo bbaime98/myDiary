@@ -10,8 +10,6 @@ after_success: npm run coverage
 services:
   - postgresql
 before_script:
-  - psql -c 'create database diarytestsdb;' -U postgres
-script:
-  - npm run test
+  - psql -c 'create database mydiarydb;' -U postgres
 after_success:
   - npm run coveralls
