@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test & nyc --reporter=html --reporter=text mocha --require babel-core/register --require babel-polyfill ./server/tests/*.js --timeout 5000 --exit",
+    "test": "SET NODE_ENV=test & nyc --reporter=html --reporter=text mocha --require babel-core/register --require babel-polyfill ./server/tests/*.js --timeout 5000 --exit",
     "start": "npm run build && node ./dist/app.js",
     "dev-start": "nodemon --require babel-core/register --require babel-polyfill ./server/app.js",
     "lint": "eslint server",
