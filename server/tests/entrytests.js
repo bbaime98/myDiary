@@ -8,7 +8,7 @@ chai.should();
 
 let userToken;
 let noEntryToken;
-describe('Entry tests ', () => {
+describe('V1 Entry tests ', () => {
   before((done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
