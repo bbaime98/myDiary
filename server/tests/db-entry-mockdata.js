@@ -18,6 +18,9 @@ const entries = {
     title: '',
     description: 'all has been edited changes modifyes total completely sucessfully almost every thing',
   },
+  wrong_token:{
+    token: 'eyJhbGcIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyZWxseUBnbWFpbC5jb20iLCJpYXQiOjE1NzI0Njg2NTJ9.eXMdkYoWmxaCxd8mXOYOc6crWKdBXcEcLpuSBwySBvI'
+  }
 };
 
 export default entries;

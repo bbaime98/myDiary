@@ -12,6 +12,7 @@ env.config();
 process.env.NODE_ENV = 'test';
 let userToken;
 let entryId;
+const wrongTokne = entryMock.wrong_token;
 describe('V2 Entry tests ', () => {
   before(() => {
     const deleteUserTestTables = `
@@ -59,7 +60,7 @@ describe('V2 Entry tests ', () => {
   it('should return no Invalid token ', (done) => {
     chai.request(app)
       .post('/api/v2/entries/')
-      .set('token', 'eyJhbGcIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyZWxseUBnbWFpbC5jb20iLCJpYXQiOjE1NzI0Njg2NTJ9.eXMdkYoWmxaCxd8mXOYOc6crWKdBXcEcLpuSBwySBvI')
+      .set('token', wrongTokne)
       .send(entryMock.user_2_create_entry)
       .end((err, res) => {
         res.should.have.status(401);
