@@ -21,6 +21,7 @@ class DatabaseConfig {
 
   async createTables() {
     await this.pool.query(queries.users);
+    await this.pool.query(queries.entries);
   }
 }
 
