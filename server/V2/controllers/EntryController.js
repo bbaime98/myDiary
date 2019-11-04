@@ -21,4 +21,23 @@ export default class Entry {
       return Response.errorResponse(res, 500, `${err.message}`);
     }
   }
+
+  static async getAll(req, res) {
+    const { id: userId } = req.payload;
+
+    const entryOwnerId = [userId];
+
+    const fetchEntries = `
+    SELECT * FROM entries WHERE userid = $1 ORDER BY createdon DESC `;
+
+    try {
+      const dbData = await db.pool.query(fetchEntries, entryOwnerId);
+      if (!dbData.rows[0]) {
+        return Response.errorResponse(res, 404, 'No Entry Found');
+      }
+      return Response.successResponse(res, 200, 'All Entries', dbData.rows);
+    } catch (err) {
+      return Response.errorResponse(res, 500, `${err.message}`);
+    }
+  }
 }

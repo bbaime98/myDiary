@@ -6,5 +6,5 @@ import auth from '../helpers/auth';
 const route = express.Router();
 
 route.post('/entries', auth, entryValidator, EntryController.createEntry);
-
+route.get('/entries', auth, EntryController.getAll);
 export default route;
