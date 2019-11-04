@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import allRoutes from './V2/routes/allRoutes';
+import userRoutes from './V2/routes/userRoutes';
 import Response from './V2/helpers/Response';
 
 dotenv.config();
@@ -15,7 +15,7 @@ app.use(
     extended: false
   })
 );
-app.use('/api/v2', allRoutes);
+app.use('/api/v2', userRoutes);
 app.get('/', (_req, res) => {
   res.status(200).send({
     status: 200,
@@ -31,8 +31,9 @@ app.use((error, _req, res, _next) => {
   if (error.status === 400) {
     return Response.errorResponse(res, error.status, 'Syntax error, Please double check your input');
   }
+  return Response.errorResponse(res, 500, 'Something went wrong, server is down');
 });
 
-app.listen(port, () => console.log(`running on ${port}`));
+app.listen(port);
 
 export default app;

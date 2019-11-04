@@ -27,4 +27,32 @@ export default class Users {
       return Response.errorResponse(res, 409, 'Email already exists');
     }
   }
+
+  static async signin(req, res) {
+    const { email, password } = req.body;
+
+    const getUser = `SELECT * FROM users WHERE email = '${email}' `;
+
+    try {
+      const dbData = await db.pool.query(getUser);
+      if (!dbData.rows[0]) {
+        return Response.errorResponse(res, 401, 'Invalid email or password');
+      }
+      const {
+        password: dbPassword, firstname, lastname, email, id
+      } = dbData.rows[0];
+      const comparePassword = bcrypt.compareSync(password, dbPassword);
+
+      if (comparePassword) {
+        const token = provideToken(dbData.rows[0].id, dbData.rows[0].email);
+        const data = {
+          token, firstname, lastname, email, id
+        };
+        return Response.successResponse(res, 200, 'User is successfully logged in', data);
+      }
+      return Response.errorResponse(res, 401, 'Invalid email or password');
+    } catch (err) {
+      return Response.errorResponse(res, 500, `${err.message}`);
+    }
+  }
 }
