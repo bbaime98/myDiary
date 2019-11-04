@@ -18,13 +18,21 @@ describe(' V2 USER TESTS', () => {
     const deleteUserTestTables = `
     DELETE FROM users 
     `;
-    db.pool.query(deleteUserTestTables);
+    try {
+      db.pool.query(deleteUserTestTables);
+    } catch (error) {
+      console.log(error);
+    }
   });
   after(() => {
     const deleteTables = `
     DELETE FROM users CASCADE
     `;
-    db.pool.query(deleteTables);
+    try {
+      db.pool.query(deleteTables);
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   it('it should sign up a user', (done) => {

@@ -20,7 +20,11 @@ class DatabaseConfig {
   }
 
   async createTables() {
-    await this.pool.query(queries.users);
+    try {
+      await this.pool.query(queries.users);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
