@@ -8,7 +8,7 @@ chai.should();
 
 
 // Signing up
-describe('Signup Test', () => {
+describe('V1 Signup Test', () => {
   it('it should sign up a user', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
@@ -102,7 +102,7 @@ describe('Signup Test', () => {
 
 // signIn
 
-describe(' Login test', () => {
+describe('V1 Login test', () => {
   it('it should sign up a 2nd user', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')

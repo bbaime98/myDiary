@@ -1,8 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import allRoutes from './routes/allRoutes';
-import Response from './helpers/Response';
+import allRoutes from './V1/routes/allRoutes';
+import Response from './V1/helpers/Response';
 
 dotenv.config();
 const app = express();
@@ -33,6 +33,6 @@ app.use((error, _req, res, _next) => {
   }
 });
 
-app.listen(port, ()=> console.log(`running on ${port}`));
+app.listen(port, () => console.log(`running on ${port}`));
 
 export default app;
