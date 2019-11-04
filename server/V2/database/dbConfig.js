@@ -13,18 +13,14 @@ class DatabaseConfig {
     });
 
     this.pool.on('connect', () => {
-      console.log('database connected...');
+
     });
 
     this.createTables();
   }
 
   async createTables() {
-    try {
-      await this.pool.query(queries.users);
-    } catch (error) {
-      console.log(error);
-    }
+    await this.pool.query(queries.users);
   }
 }
 

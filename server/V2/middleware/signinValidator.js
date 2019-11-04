@@ -1,12 +1,10 @@
 import Joi from 'joi';
 import Response from '../helpers/Response';
 
-const signup = (req, res, next) => {
+const signin = (req, res, next) => {
   const schema = {
-    firstName: Joi.string().min(4).max(15).required(),
-    lastName: Joi.string().min(4).max(15).required(),
     email: Joi.string().email().required(),
-    password: Joi.string().regex(/^[a-zA-Z0-9!@#$%^&*]{6,20}$/).required()
+    password: Joi.string().required()
   };
   const { error } = Joi.validate(req.body, schema);
   if (error) {
@@ -15,4 +13,4 @@ const signup = (req, res, next) => {
   next();
 };
 
-export default signup;
+export default signin;
