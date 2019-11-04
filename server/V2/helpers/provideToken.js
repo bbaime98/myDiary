@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 /**
  *@description creates token
- * 
+ *
  * @param {number} userId
  * @param {string} userEmail
  */
