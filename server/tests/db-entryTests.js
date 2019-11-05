@@ -120,14 +120,14 @@ describe('V2 Entry tests ', () => {
         done();
       });
   });
-  it('should return No entry found ', (done) => {
+  it('should return no entry found, create an entry first ', (done) => {
     chai.request(app)
       .get('/api/v2/entries')
       .set('token', userNoEntry)
       .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('error').eql('No Entry Found');
+        res.should.have.status(200);
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('Create an entry first, no entry found at the moment');
         done();
       });
   });

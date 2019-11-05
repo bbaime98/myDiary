@@ -33,7 +33,7 @@ export default class Entry {
     try {
       const dbData = await db.pool.query(fetchEntries, entryOwnerId);
       if (!dbData.rows[0]) {
-        return Response.errorResponse(res, 404, 'No Entry Found');
+        return Response.successResponse(res, 200, 'Create an entry first, no entry found at the moment', dbData.rows);
       }
       return Response.successResponse(res, 200, 'All Entries', dbData.rows);
     } catch (err) {
