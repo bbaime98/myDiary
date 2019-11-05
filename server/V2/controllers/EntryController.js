@@ -4,6 +4,12 @@ import Response from '../helpers/Response';
 
 
 export default class Entry {
+  /**
+   * @description handles entry creation
+   *
+   * @param {object} req
+   * @param {object } res
+   */
   static async createEntry(req, res) {
     const { title, description } = req.body;
     const { id: userId } = req.payload;
@@ -21,6 +27,13 @@ export default class Entry {
       return Response.errorResponse(res, 500, `${err.message}`);
     }
   }
+
+  /**
+ *@description handles retrieve all entries
+ *
+ * @param {object} req
+ * @param {object} res
+ */
 
   static async getAll(req, res) {
     const { id: userId } = req.payload;
