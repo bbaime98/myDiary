@@ -62,4 +62,8 @@ export default class Entry {
       return Response.errorResponse(res, 500, `${err.message}`);
     }
   }
+
+  static async specifiEntry(req, res) {
+    return Response.successResponse(res, 200, 'Specific entry', req.fetchedEntry);
+  }
 }

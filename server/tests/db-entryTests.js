@@ -143,4 +143,38 @@ describe('V2 Entry tests ', () => {
         done();
       });
   });
+  it('should return specific entry ', (done) => {
+    chai.request(app)
+      .get(`/api/v2/entries/${entryId}`)
+      .set('token', userToken)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('Specific entry');
+        res.body.should.have.property('data');
+        done();
+      });
+  });
+  it('should return enter valid entry Id ', (done) => {
+    chai.request(app)
+      .get('/api/v2/entries/tuyiuopiuyt')
+      .set('token', userToken)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error').eql('Please enter a  valid entry Id');
+        done();
+      });
+  });
+  it('should return entry not found ', (done) => {
+    chai.request(app)
+      .get(`/api/v2/entries/${9409}`)
+      .set('token', userToken)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('error').eql('No Entry Found');
+        done();
+      });
+  });
 });
