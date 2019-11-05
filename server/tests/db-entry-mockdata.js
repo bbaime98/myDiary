@@ -6,6 +6,12 @@ const entries = {
     email: 'signup2@gmail.com',
     password: 'Password@123',
   },
+  signup_user_No_entry: {
+    firstName: 'userwithno',
+    lastName: 'noentry',
+    email: 'usernoentry@gmail.com',
+    password: 'Passwo$#89rd@123',
+  },
   user_2_create_entry2: {
     title: 'This is a good title',
     description: 'everything will be alright',

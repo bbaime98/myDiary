@@ -12,6 +12,7 @@ env.config();
 process.env.NODE_ENV = 'test';
 let userToken;
 let entryId;
+let userNoEntry;
 const wrongTokne = entryMock.wrong_token;
 describe('V2 Entry tests ', () => {
   before(() => {
@@ -31,6 +32,20 @@ describe('V2 Entry tests ', () => {
       .send(entryMock.signup_user2)
       .end((_err, res) => {
         userToken = res.body.data.token;
+        res.should.have.status(201);
+        res.body.should.have.property('status').eql(201);
+        res.body.should.have.property('message').eql('User created successfully');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('token');
+        done();
+      });
+  });
+  it('it should sign up a user who will no create an entry', (done) => {
+    chai.request(app)
+      .post('/api/v2/auth/signup')
+      .send(entryMock.signup_user_No_entry)
+      .end((_err, res) => {
+        userNoEntry = res.body.data.token;
         res.should.have.status(201);
         res.body.should.have.property('status').eql(201);
         res.body.should.have.property('message').eql('User created successfully');
@@ -90,6 +105,29 @@ describe('V2 Entry tests ', () => {
         res.should.have.status(400);
         res.body.should.have.property('status').eql(400);
         res.body.should.have.property('error');
+        done();
+      });
+  });
+  it('should return all entries created ', (done) => {
+    chai.request(app)
+      .get('/api/v2/entries')
+      .set('token', userToken)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('All Entries');
+        res.body.should.have.property('data');
+        done();
+      });
+  });
+  it('should return no entry found, create an entry first ', (done) => {
+    chai.request(app)
+      .get('/api/v2/entries')
+      .set('token', userNoEntry)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('Create an entry first, no entry found at the moment');
         done();
       });
   });
