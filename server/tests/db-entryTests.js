@@ -72,6 +72,18 @@ describe('V2 Entry tests ', () => {
         done();
       });
   });
+  it('should return title already exist ', (done) => {
+    chai.request(app)
+      .post('/api/v2/entries')
+      .set('token', userToken)
+      .send(entryMock.user_2_create_entry1)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error').eql('Title already exist');
+        done();
+      });
+  });
   it('should return no Invalid token ', (done) => {
     chai.request(app)
       .post('/api/v2/entries/')

@@ -14,14 +14,21 @@ export default class Entry {
   static async createEntry(req, res) {
     const { title, description } = req.body;
     const { id: userId } = req.payload;
-
+    const titleValue = [title];
+    const entryValues = [title, description, userId];
+    const searchTitle = `
+    SELECT * FROM entries WHERE title = $1 `;
     const entryCreation = ` 
         INSERT INTO entries( title, description, userId)
         VALUES($1, $2, $3)  
         returning entryId,title, description, createdOn
         `;
-    const entryValues = [title, description, userId];
+
     try {
+      const existTitle = await db.pool.query(searchTitle, titleValue);
+      if (existTitle.rows[0]) {
+        return Response.errorResponse(res, 400, 'Title already exist');
+      }
       const dbData = await db.pool.query(entryCreation, entryValues);
       return Response.successResponse(res, 201, 'Entry successfully created', dbData.rows[0]);
     } catch (err) {
