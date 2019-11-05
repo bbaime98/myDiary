@@ -14,10 +14,10 @@ export default class Entry {
   static async createEntry(req, res) {
     const { title, description } = req.body;
     const { id: userId } = req.payload;
-    const titleValue = [title];
+    const titleSearchValue = [title, userId];
     const entryValues = [title, description, userId];
     const searchTitle = `
-    SELECT * FROM entries WHERE title = $1 `;
+    SELECT * FROM entries WHERE title = $1 AND userid = $2 `;
     const entryCreation = ` 
         INSERT INTO entries( title, description, userId)
         VALUES($1, $2, $3)  
@@ -25,7 +25,7 @@ export default class Entry {
         `;
 
     try {
-      const existTitle = await db.pool.query(searchTitle, titleValue);
+      const existTitle = await db.pool.query(searchTitle, titleSearchValue);
       if (existTitle.rows[0]) {
         return Response.errorResponse(res, 400, 'Title already exist');
       }
