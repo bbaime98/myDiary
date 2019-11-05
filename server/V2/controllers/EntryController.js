@@ -63,6 +63,14 @@ export default class Entry {
     }
   }
 
+  /**
+ *
+ * @description handles view a specific entry
+ *
+ * @param {object} res
+ * @param {object} req
+ * @return {object} specific entry
+ */
   static async specifiEntry(req, res) {
     return Response.successResponse(res, 200, 'Specific entry', req.fetchedEntry);
   }
