@@ -9,6 +9,7 @@ export default class Entry {
    *
    * @param {object} req
    * @param {object } res
+   * @return {object} entry object
    */
   static async createEntry(req, res) {
     const { title, description } = req.body;
@@ -33,6 +34,7 @@ export default class Entry {
  *
  * @param {object} req
  * @param {object} res
+ * @return [array] All entries
  */
 
   static async getAll(req, res) {
