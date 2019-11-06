@@ -185,7 +185,6 @@ describe('V2 Entry tests ', () => {
         res.should.have.status(200);
         res.body.should.have.property('status').eql(200);
         res.body.should.have.property('message').eql('Entry successfully deleted');
-        res.body.should.have.property('data');
         done();
       });
   });

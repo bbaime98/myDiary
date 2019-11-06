@@ -93,7 +93,7 @@ export default class Entry {
     try {
       await db.pool.query(deleteEntry, deleteEntryValues);
 
-      return Response.successResponse(res, 200, 'Entry successfully deleted', req.fetchedEntry);
+      return Response.successResponse(res, 200, 'Entry successfully deleted');
     } catch (err) {
       return Response.errorResponse(res, 500, `${err.message}`);
     }
