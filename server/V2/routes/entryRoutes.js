@@ -10,4 +10,5 @@ route.post('/entries', auth, entryValidator, EntryController.createEntry);
 route.get('/entries', auth, EntryController.getAll);
 route.get('/entries/:id', auth, searchEntry, EntryController.specifiEntry);
 route.delete('/entries/:id', auth, searchEntry, EntryController.deleteEntry);
+route.patch('/entries/:id', auth, searchEntry, entryValidator, EntryController.modifyEntry);
 export default route;

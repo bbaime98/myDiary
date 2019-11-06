@@ -12,6 +12,7 @@ entryId serial PRIMARY KEY,
 userId INTEGER REFERENCES users (id)  ON DELETE CASCADE ON UPDATE CASCADE,
 title TEXT NOT NULL,
 description TEXT NOT NULL,
-createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+createdOn TEXT,
+editedOn TEXT 
 )`;
 export default { users, entries };
