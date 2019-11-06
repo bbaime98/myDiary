@@ -26,7 +26,11 @@ const entries = {
   },
   wrong_token:{
     token: 'eyJhbGcIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyZWxseUBnbWFpbC5jb20iLCJpYXQiOjE1NzI0Njg2NTJ9.eXMdkYoWmxaCxd8mXOYOc6crWKdBXcEcLpuSBwySBvI'
-  }
+  },
+  modifyEntry:{
+    title: 'This is a entry is modifies',
+    description: 'everything was changed nand more are added its be alright'
+  },
 };
 
 export default entries;

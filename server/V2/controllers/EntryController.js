@@ -15,12 +15,14 @@ export default class Entry {
     const { title, description } = req.body;
     const { id: userId } = req.payload;
     const titleSearchValue = [title, userId];
-    const entryValues = [title, description, userId];
+    const createdOn = new Date();
+    const dateFormat = `${createdOn.getDate()}-${createdOn.getMonth() + 1}-${createdOn.getFullYear()} ${createdOn.getHours()}:${createdOn.getMinutes()}:${createdOn.getSeconds()}`;
+    const entryValues = [title, description, userId, dateFormat];
     const searchTitle = `
     SELECT * FROM entries WHERE title = $1 AND userid = $2 `;
     const entryCreation = ` 
-        INSERT INTO entries( title, description, userId)
-        VALUES($1, $2, $3)  
+        INSERT INTO entries( title, description, userId, createdOn)
+        VALUES($1, $2, $3, $4)  
         returning entryId,title, description, createdOn
         `;
 
@@ -94,6 +96,23 @@ export default class Entry {
       await db.pool.query(deleteEntry, deleteEntryValues);
 
       return Response.successResponse(res, 200, 'Entry successfully deleted');
+    } catch (err) {
+      return Response.errorResponse(res, 500, `${err.message}`);
+    }
+  }
+
+  static async modifyEntry(req, res) {
+    const { userid, entryid } = req.fetchedEntry;
+    const { title, description } = req.body;
+    const editedOn = new Date();
+    const dateFormat = `${editedOn.getDate()}-${editedOn.getMonth() + 1}-${editedOn.getFullYear()} ${editedOn.getHours()}:${editedOn.getMinutes()}:${editedOn.getSeconds()}`;
+    const updateValues = [title, description, userid, entryid, dateFormat];
+
+    const updateEntry = `
+        UPDATE  entries SET title = $1 , description = $2 ,  editedOn = $5 WHERE userid = $3 AND entryid = $4 RETURNING * `;
+    try {
+      const dbData = await db.pool.query(updateEntry, updateValues);
+      return Response.successResponse(res, 200, 'Entry successfully edited', dbData.rows[0]);
     } catch (err) {
       return Response.errorResponse(res, 500, `${err.message}`);
     }
