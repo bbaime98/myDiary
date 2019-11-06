@@ -1,6 +1,6 @@
+import Joi from 'joi';
 import db from '../database/dbConfig';
 import Response from '../helpers/Response';
-
 /**
  *
  * @param {object} req
@@ -8,10 +8,10 @@ import Response from '../helpers/Response';
  * @returns (function) next
  */
 const searchEntry = async (req, res, next) => {
-  if (isNaN(req.params.id)) {
-    return Response.errorResponse(res, 400, 'Please enter a  valid entry Id');
+  const validateParams = Joi.validate(`${req.params.id}`, Joi.string().guid());
+  if (validateParams.error) {
+    return Response.errorResponse(res, 400, 'Please enter a valid entry');
   }
-
   const { id: userId } = req.payload;
   const values = [userId, req.params.id];
 

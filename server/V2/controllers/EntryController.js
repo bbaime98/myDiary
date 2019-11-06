@@ -1,7 +1,7 @@
 
+import uuid from 'uuid';
 import db from '../database/dbConfig';
 import Response from '../helpers/Response';
-
 
 export default class Entry {
   /**
@@ -17,12 +17,12 @@ export default class Entry {
     const titleSearchValue = [title, userId];
     const createdOn = new Date();
     const dateFormat = `${createdOn.getDate()}-${createdOn.getMonth() + 1}-${createdOn.getFullYear()} ${createdOn.getHours()}:${createdOn.getMinutes()}:${createdOn.getSeconds()}`;
-    const entryValues = [title, description, userId, dateFormat];
+    const entryValues = [uuid.v1(), title, description, userId, dateFormat];
     const searchTitle = `
     SELECT * FROM entries WHERE title = $1 AND userid = $2 `;
     const entryCreation = ` 
-        INSERT INTO entries( title, description, userId, createdOn)
-        VALUES($1, $2, $3, $4)  
+        INSERT INTO entries(entryId, title, description, userId, createdOn)
+        VALUES($1, $2, $3, $4, $5)  
         returning entryId,title, description, createdOn
         `;
 

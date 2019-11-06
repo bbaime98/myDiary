@@ -61,6 +61,39 @@ describe(' V2 USER TESTS', () => {
         done();
       });
   });
+  it('it should not sign up a user with weak password ', (done) => {
+    chai.request(app)
+      .post('/api/v2/auth/signup')
+      .send(mockData.signup_min_password)
+      .end((_err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error');
+        done();
+      });
+  });
+  it('it should not sign up a user with short names password ', (done) => {
+    chai.request(app)
+      .post('/api/v2/auth/signup')
+      .send(mockData.signup_min_name)
+      .end((_err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error');
+        done();
+      });
+  });
+  it('it should not sign up a user with bad email foramt ', (done) => {
+    chai.request(app)
+      .post('/api/v2/auth/signup')
+      .send(mockData.signup_bad_email_format)
+      .end((_err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error');
+        done();
+      });
+  });
   it('it should not sign up a user who already exist', (done) => {
     chai.request(app)
       .post('/api/v2/auth/signup')
@@ -101,6 +134,28 @@ describe(' V2 USER TESTS', () => {
     chai.request(app)
       .post('/api/v2/auth/signin')
       .send(mockData.login_user_no_password)
+      .end((_err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error');
+        done();
+      });
+  });
+  it('it should not login a user with bad email format', (done) => {
+    chai.request(app)
+      .post('/api/v2/auth/signin')
+      .send(mockData.login_user_bad_email_format)
+      .end((_err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error');
+        done();
+      });
+  });
+  it('it should not login a user without  email', (done) => {
+    chai.request(app)
+      .post('/api/v2/auth/signin')
+      .send(mockData.login_user_no_email)
       .end((_err, res) => {
         res.should.have.status(400);
         res.body.should.have.property('status').eql(400);

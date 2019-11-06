@@ -3,7 +3,7 @@ node_modules
 .nyc_output
 .vscode
 coverage
-
+package-lock.json
 # Ignore coveralls.yml and .env to keep them confidential
 .coveralls.yml
 .env
