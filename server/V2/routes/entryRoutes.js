@@ -9,4 +9,5 @@ const route = express.Router();
 route.post('/entries', auth, entryValidator, EntryController.createEntry);
 route.get('/entries', auth, EntryController.getAll);
 route.get('/entries/:id', auth, searchEntry, EntryController.specifiEntry);
+route.delete('/entries/:id', auth, searchEntry, EntryController.deleteEntry);
 export default route;

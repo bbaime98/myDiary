@@ -74,4 +74,28 @@ export default class Entry {
   static async specifiEntry(req, res) {
     return Response.successResponse(res, 200, 'Specific entry', req.fetchedEntry);
   }
+
+  /**
+ *
+ * @description handles delete entry
+ *
+ * @param {object} req
+ * @param {object} res
+ * @returns {object} deleted entry details
+ *
+ */
+  static async deleteEntry(req, res) {
+    const { userid, entryid } = req.fetchedEntry;
+    const deleteEntryValues = [userid, entryid];
+    const deleteEntry = `
+    DELETE FROM entries WHERE userid = $1 AND entryid = $2 `;
+
+    try {
+      await db.pool.query(deleteEntry, deleteEntryValues);
+
+      return Response.successResponse(res, 200, 'Entry successfully deleted', req.fetchedEntry);
+    } catch (err) {
+      return Response.errorResponse(res, 500, `${err.message}`);
+    }
+  }
 }

@@ -177,4 +177,27 @@ describe('V2 Entry tests ', () => {
         done();
       });
   });
+  it('should return entry was deleted sucessfullly ', (done) => {
+    chai.request(app)
+      .delete(`/api/v2/entries/${entryId}`)
+      .set('token', userToken)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('Entry successfully deleted');
+        res.body.should.have.property('data');
+        done();
+      });
+  });
+  it('should return entry was deleted sucessfullly ', (done) => {
+    chai.request(app)
+      .delete(`/api/v2/entries/${6754}`)
+      .set('token', userNoEntry)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('error').eql('No Entry Found');
+        done();
+      });
+  });
 });
