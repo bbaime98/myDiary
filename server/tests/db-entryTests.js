@@ -65,10 +65,34 @@ describe('V2 Entry tests ', () => {
         res.body.should.have.property('status').eql(201);
         res.body.should.have.property('message').eql('Entry successfully created');
         res.body.should.have.property('data');
-        res.body.data.should.have.property('title').eql('This is a second entry');
-        res.body.data.should.have.property('description').eql('new entry new entry new entry new entry');
+        res.body.data.should.have.property('title').eql('This is a second entry hahahahahahahahahahahahah');
+        res.body.data.should.have.property('description').eql('new entry new entry new entry new entry ahahhhhhhhhhhhhahahahahahahahahahaha');
         res.body.data.should.have.property('entryid');
         res.body.data.should.have.property('createdon');
+        done();
+      });
+  });
+  it('should return not create an entry with a short  title ', (done) => {
+    chai.request(app)
+      .post('/api/v2/entries')
+      .set('token', userToken)
+      .send(entryMock.entry_min_title)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error');
+        done();
+      });
+  });
+  it('should return  not create an entry without title ', (done) => {
+    chai.request(app)
+      .post('/api/v2/entries')
+      .set('token', userToken)
+      .send(entryMock.entry_without_title)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error');
         done();
       });
   });
@@ -162,7 +186,7 @@ describe('V2 Entry tests ', () => {
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.have.property('status').eql(400);
-        res.body.should.have.property('error').eql('Please enter a  valid entry Id');
+        res.body.should.have.property('error').eql('Please enter a valid entry');
         done();
       });
   });
@@ -171,9 +195,9 @@ describe('V2 Entry tests ', () => {
       .get(`/api/v2/entries/${9409}`)
       .set('token', userToken)
       .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('error').eql('No Entry Found');
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error').eql('Please enter a valid entry');
         done();
       });
   });
@@ -182,9 +206,9 @@ describe('V2 Entry tests ', () => {
       .delete(`/api/v2/entries/${6754}`)
       .set('token', userNoEntry)
       .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('error').eql('No Entry Found');
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error').eql('Please enter a valid entry');
         done();
       });
   });
@@ -207,9 +231,9 @@ describe('V2 Entry tests ', () => {
       .send(entryMock.modifyEntry)
       .set('token', userNoEntry)
       .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('error').eql('No Entry Found');
+        res.should.have.status(400);
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error').eql('Please enter a valid entry');
         done();
       });
   });
@@ -221,6 +245,17 @@ describe('V2 Entry tests ', () => {
         res.should.have.status(200);
         res.body.should.have.property('status').eql(200);
         res.body.should.have.property('message').eql('Entry successfully deleted');
+        done();
+      });
+  });
+  it('should return entry not found', (done) => {
+    chai.request(app)
+      .delete(`/api/v2/entries/${entryId}`)
+      .set('token', userToken)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('error').eql('No Entry Found');
         done();
       });
   });

@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import uuid from 'uuid';
 import db from '../database/dbConfig';
 import provideToken from '../helpers/provideToken';
 import Response from '../helpers/Response';
@@ -8,12 +9,12 @@ export default class Users {
     const {
       firstName, lastName, email, password
     } = req.body;
-    const userValues = [firstName, lastName, email, bcrypt.hashSync(password, 10)];
+    const userValues = [uuid.v1(), firstName, lastName, email, bcrypt.hashSync(password, 10)];
 
 
     const query = `
-        INSERT INTO users(firstName, lastName, email, password)
-        VALUES($1, $2, $3, $4)
+        INSERT INTO users(id, firstName, lastName, email, password)
+        VALUES($1, $2, $3, $4, $5)
         returning id, firstName, lastName, email `;
 
     try {
