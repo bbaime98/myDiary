@@ -179,8 +179,11 @@ footer{
         color: #000;
     }
     .content{
-       margin-top: 170px;
+       margin-top: 190px;
     }
+    .content span{
+      color: #ffc107 ;
+   }
     .hero{
         text-align: center;
    
@@ -195,12 +198,15 @@ footer{
       color: white;
     }
     .hero p {
-        font-size: 1.2em;
+        font-size: 1.7em;
         font-weight: 600;
         max-width: 500px;
         line-height: 1.8rem;
         margin: 3em auto;
-        color: black;
+        color: white;
+        background: rgba(45, 45, 46, 0.219);
+        border-radius: 10px;
+        padding: 9px 5px;
     }
    
     .hero a{
@@ -212,6 +218,7 @@ footer{
         font-size: 1.37em;
         font-weight: 700;
         cursor: pointer;
+        margin-top: 200px;
     }
     .hero a:hover{
     color: #ffc107;
@@ -351,12 +358,14 @@ section .entries{
   display: inline-block;
   text-decoration: none;
   text-transform: uppercase;
-  padding: 10px 15px;
-  border: 2px solid #02387e;
-  border-radius: 15px;
-  margin-top: 15px;
-  font-size: 18px;
+  padding: 5px 6px;
+  border: 1px solid #02387e;
+  border-radius: 9px;
+  margin-top: 30px;
+  font-size: 13px;
   transition: .2s;
+  margin-inline: 4px;
+  color: #02387e;
 }
 .entries ul li .details a:hover{
   background: #ffc107;;
@@ -429,9 +438,10 @@ section .entries{
   width: 60%;
   height: 70%;
   background: white;
-  margin: 110px auto;
+  margin: 160px auto;
   padding: 20px;
-  box-shadow: 0 0 20px rgba(72,98,85,0.6);
+  box-shadow: 0 0 3px rgba(70, 71, 71, 0.6);
+  overflow-y: hidden;
 }
 .container-entry p{
   text-transform: uppercase;
@@ -447,7 +457,7 @@ section .entries{
 }
 .input , .msg  .area {
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
   margin-bottom: 25px;
   border: 2px solid #e9eaea;
@@ -483,22 +493,23 @@ section .entries{
 }
 /* single entry */
 .single{
-  margin-top: 150px;
+  margin-top: 170px;
   text-align: center;
   color: black;
 }
 .single p {
   font-size: 1.2em;
-        max-width: 500px;
-        margin: 1em auto;
-        color: black;
+  max-width: 500px;
+  margin: 1em auto;
+  color: black;
+  /* text-align: center; */
 }
 .single h2 {
   color: #ffc107;
 }
 .enry-date{
-  font-size: 18px;
-  font-weight: 100;
+  font-size: 14px;
+  font-weight: 400;
 }
 .single a{
   display: inline-block;
@@ -511,17 +522,19 @@ section .entries{
   margin-top: 15px;
   font-size: 18px;
   transition: .2s;
+  margin-inline: 15px;
 }
-.single a:hover{
-  background: #ffc107;;
-  color: white;
-  border-color: #ffc107;;
-}
-.single .delete:hover{
+.delete-single:hover{
   background: #e60d0d;
   color: white;
   border-color: #e60d0d;
 }
+.justedit:hover{
+  background: #ffc107;;
+  color: white;
+  border-color: #ffc107;;
+}
+
 
 /****** pagging */
 .pagging {
@@ -643,6 +656,6 @@ section .entries{
  padding: 4px 5px;
  font-size: 13px;
  margin-top: 9%;
- margin-left: 67%;
+ margin-left: 36%;
  border-radius: 4px;
 }
