@@ -1,6 +1,8 @@
 import Joi from 'joi';
 import db from '../database/dbConfig';
 import Response from '../helpers/Response';
+import queries from '../database/querries';
+
 /**
  *
  * @param {object} req
@@ -15,10 +17,8 @@ const searchEntry = async (req, res, next) => {
   const { id: userId } = req.payload;
   const values = [userId, req.params.id];
 
-  const searchEntryInDb = ` 
-  SELECT * FROM entries WHERE userid = $1 AND entryid = $2 `;
   try {
-    const dbData = await db.pool.query(searchEntryInDb, values);
+    const dbData = await db.pool.query(queries.searchEntryInDb, values);
     if (!dbData.rows[0]) {
       return Response.errorResponse(res, 404, 'No Entry Found');
     }
