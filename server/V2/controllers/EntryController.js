@@ -2,6 +2,7 @@
 import uuid from 'uuid';
 import db from '../database/dbConfig';
 import Response from '../helpers/Response';
+import queries from '../database/querries';
 
 export default class Entry {
   /**
@@ -18,20 +19,12 @@ export default class Entry {
     const createdOn = new Date();
     const dateFormat = `${createdOn.getDate()}-${createdOn.getMonth() + 1}-${createdOn.getFullYear()} ${createdOn.getHours()}:${createdOn.getMinutes()}:${createdOn.getSeconds()}`;
     const entryValues = [uuid.v1(), title, description, userId, dateFormat];
-    const searchTitle = `
-    SELECT * FROM entries WHERE title = $1 AND userid = $2 `;
-    const entryCreation = ` 
-        INSERT INTO entries(entryId, title, description, userId, createdOn)
-        VALUES($1, $2, $3, $4, $5)  
-        returning entryId,title, description, createdOn
-        `;
-
     try {
-      const existTitle = await db.pool.query(searchTitle, titleSearchValue);
+      const existTitle = await db.pool.query(queries.searchTitle, titleSearchValue);
       if (existTitle.rows[0]) {
         return Response.errorResponse(res, 400, 'Title already exist');
       }
-      const dbData = await db.pool.query(entryCreation, entryValues);
+      const dbData = await db.pool.query(queries.entryCreation, entryValues);
       return Response.successResponse(res, 201, 'Entry successfully created', dbData.rows[0]);
     } catch (err) {
       return Response.errorResponse(res, 500, `${err.message}`);
@@ -50,12 +43,8 @@ export default class Entry {
     const { id: userId } = req.payload;
 
     const entryOwnerId = [userId];
-
-    const fetchEntries = `
-    SELECT * FROM entries WHERE userid = $1 ORDER BY createdon DESC `;
-
     try {
-      const dbData = await db.pool.query(fetchEntries, entryOwnerId);
+      const dbData = await db.pool.query(queries.fetchEntries, entryOwnerId);
       if (!dbData.rows[0]) {
         return Response.successResponse(res, 200, 'Create an entry first, no entry found at the moment', dbData.rows);
       }
@@ -89,11 +78,8 @@ export default class Entry {
   static async deleteEntry(req, res) {
     const { userid, entryid } = req.fetchedEntry;
     const deleteEntryValues = [userid, entryid];
-    const deleteEntry = `
-    DELETE FROM entries WHERE userid = $1 AND entryid = $2 `;
-
     try {
-      await db.pool.query(deleteEntry, deleteEntryValues);
+      await db.pool.query(queries.deleteEntry, deleteEntryValues);
 
       return Response.successResponse(res, 200, 'Entry successfully deleted');
     } catch (err) {
@@ -108,10 +94,8 @@ export default class Entry {
     const dateFormat = `${editedOn.getDate()}-${editedOn.getMonth() + 1}-${editedOn.getFullYear()} ${editedOn.getHours()}:${editedOn.getMinutes()}:${editedOn.getSeconds()}`;
     const updateValues = [title, description, userid, entryid, dateFormat];
 
-    const updateEntry = `
-        UPDATE  entries SET title = $1 , description = $2 ,  editedOn = $5 WHERE userid = $3 AND entryid = $4 RETURNING * `;
     try {
-      const dbData = await db.pool.query(updateEntry, updateValues);
+      const dbData = await db.pool.query(queries.updateEntry, updateValues);
       return Response.successResponse(res, 200, 'Entry successfully edited', dbData.rows[0]);
     } catch (err) {
       return Response.errorResponse(res, 500, `${err.message}`);

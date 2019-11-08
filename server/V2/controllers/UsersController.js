@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import db from '../database/dbConfig';
 import provideToken from '../helpers/provideToken';
 import Response from '../helpers/Response';
+import queries from '../database/querries';
 
 export default class Users {
   static async signup(req, res) {
@@ -11,14 +12,8 @@ export default class Users {
     } = req.body;
     const userValues = [uuid.v1(), firstName, lastName, email, bcrypt.hashSync(password, 10)];
 
-
-    const query = `
-        INSERT INTO users(id, firstName, lastName, email, password)
-        VALUES($1, $2, $3, $4, $5)
-        returning id, firstName, lastName, email `;
-
     try {
-      const dbData = await db.pool.query(query, userValues);
+      const dbData = await db.pool.query(queries.query, userValues);
       const token = provideToken(dbData.rows[0].id, dbData.rows[0].email);
       const data = {
         token, id: dbData.rows[0].id, firstName, lastName, email
